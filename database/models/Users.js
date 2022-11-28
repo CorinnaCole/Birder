@@ -41,9 +41,23 @@ const getFriends = (user_id) => pool.query(`
   FROM users
   WHERE user_id = ANY (SELECT unnest(arr) FROM frdsArray)`);
 
-// const updateOneUser = (req) =>
-const updateOneUser = (req) => {}
+const updateOneUser = (req) => {
+  for (column in req) {
+    if (column !== 'user_id') {
+      if (column !== 'user_location') {
+        pool.query(`UPDATE users SET ${column} = '${req[column]}' WHERE user_id = ${req.user_id}`);
+      } else {
+        pool.query(`UPDATE users SET ${column} = ${req[column]} WHERE user_id = ${req.user_id}`);
+      }
+    }
+  }
+};
+
+const postFriend = (req) => pool.query(
+  `INSERT INTO friendships (logged_in_user_id, friend_user_id) VALUES (${req.userID}, ${req.friend});
+  INSERT INTO friendships (logged_in_user_id, friend_user_id) VALUES (${req.friend}, ${req.userID});`
+);
 
 module.exports = {
-  postUser, getEmail, getOneUser, getOneUserID, getUsers, getFriends,
+  postUser, getEmail, getOneUser, getOneUserID, getUsers, getFriends, updateOneUser, postFriend,
 };
