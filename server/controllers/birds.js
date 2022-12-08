@@ -11,23 +11,19 @@ const {
 const getBirdNames = (req, res) => {
   console.log('REQUEST RECEIVED');
   getBirds().then((names) => {
-
-    // console.log(names);
     res.send(names);
   })
 }
 
 const getBirdCards = (req, res) => {
-  getAllBirdCardInfo(parseInt(req.params.user_id))
+  const userId = parseInt(req.params.user_id);
+  getAllBirdCardInfo(userId)
   .then((data) => {
     let results = [];
     if (data.rows[0]) {
       results = data.rows[0].birdcardinfo
+      // console.log('results from within getBirdCards ', results);
     }
-    //  console.log('data.row[0]', data.rows[0])
-
-
-    // console.log('birdCards in server', results)
     res.status(200).send(results);
   })
   .catch(err => {
@@ -44,13 +40,10 @@ const getBirdCards = (req, res) => {
 
 const getGeoLocFromAddress = async (req, res) => {
   let addressString = req.body.address.split(' ').join('%20');
-  console.log(addressString, 'addressString');
   let googleURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=formatted_address%2Cname%2Cgeometry&input=${addressString}&inputtype=textquery&key=${process.env.GOOGLE_MAPS_API_KEY}`;
   try {
     let response = await axios.get(googleURL);
-    console.log(response, 'response');
     let formattedAddress = response.data.candidates;
-    console.log(formattedAddress, 'formatted address')
     res.send(formattedAddress);
   } catch (err) {
     console.log('there is an error in getGeoLocfromAddress', err);
@@ -113,9 +106,6 @@ const postBird = async (req, res) => {
     lat: lat,
     lon: lng
   };
-
-  // console.log('posting bird obj:', birdObj);
-  // res.send('testing bird post');
   try {
     if (req.body.bird_id === 0) {
       const { sciName } = await getScientificName(bodyName);
@@ -124,7 +114,6 @@ const postBird = async (req, res) => {
       birdObj.summary = summary;
       birdObj.commonName = bodyName;
       const birdId = await createABird(birdObj);
-      // console.log(birdId.rows);
       birdObj.bird_id = birdId.rows[0].bird_id;
     } else {
       birdObj.bird_id = req.body.bird_id;
@@ -136,10 +125,6 @@ const postBird = async (req, res) => {
     res.status(500).send(err);
   }
 }
-
-
-
-
 
 module.exports = {
   getBirdNames,
