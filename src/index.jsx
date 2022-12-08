@@ -95,7 +95,6 @@ const MainComponent = () => {
   useEffect(() => {
     axios.get('/birds')
       .then((data) => {
-        // console.log('birds? ', data.data);
         setAllBirds(data.data);
       })
       .catch((err) => {
@@ -108,27 +107,51 @@ const MainComponent = () => {
     <Router>
       <Auth0ProviderWithHistory>
         <Switch>
-          <Route path="/user">
+          <Route
+            path="/user">
             {' '}
-            <AccountPage setGlobalUser={setGlobalUser} globalUser={globalUser} />
-            {' '}
-          </Route>
-          <Route path="/createUser">
-            <UserSignUp globalUser={globalUser} />
-          </Route>
-          <Route exact path="/">
-            <App globalUser={globalUser} setGlobalUser={setGlobalUser} userID={userID} setUserID={setUserID} />
+            <AccountPage
+              setGlobalUser={setGlobalUser}
+              globalUser={globalUser} />
             {' '}
           </Route>
-          <Route path="/birdList">
-            <BirdList userID={userID} allBirds={allBirds} />
+          <Route
+            path="/createUser">
+            <UserSignUp
+              globalUser={globalUser} />
           </Route>
-          <Route path="/discover">
-            <Discover allBirds={allBirds} />
+
+          <Route
+            exact path="/">
+            <App
+              globalUser={globalUser}
+              setGlobalUser={setGlobalUser}
+              userID={userID}
+              setUserID={setUserID} />
+            {' '}
           </Route>
+
+          <Route
+            path="/birdList">
+            <BirdList
+              userID={userID}
+              allBirds={allBirds} />
+          </Route>
+
+          <Route
+            path="/discover">
+            <Discover
+              allBirds={allBirds} />
+          </Route>
+
           <Route path="/friendsList">
-            <FriendsList userID={userID} allUsers={allUsers} home={returnToAccountPage} friendsList={friendsList}
-            updateFriends={() => {getFriendsList()}} globalUser={globalUser}/>
+            <FriendsList
+              userID={userID}
+              allUsers={allUsers}
+              home={returnToAccountPage}
+              friendsList={friendsList}
+              updateFriends={() => { getFriendsList() }}
+              globalUser={globalUser} />
           </Route>
         </Switch>
       </Auth0ProviderWithHistory>
@@ -136,7 +159,6 @@ const MainComponent = () => {
   );
 };
 
-// create the root of the app by selection where the app should be mounted in the dom
 ReactDOM.createRoot(document.getElementById('root')).render(
   <MainComponent />,
 );

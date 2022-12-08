@@ -73,14 +73,13 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
   const [birdSugClicked, setBirdSugClicked] = useState(false);
   const [cardList, setCardList] = useState([]);
   const [birlURL, setBirdURL] = useState('');
-  const sample = ['robin', 'blue jay', 'raven'];
 
   useEffect(() => {
     if (birdName.length !== 0) {
-      // console.log(birdName);
+      console.log(birdName, 'inside birdName useeffect');
       // sort all users where username or birds sceen name matches term
       const filtered = allBirds.filter((bird) => {
-        return bird.bird_common_name.toUpperCase().includes(birdName.toUpperCase()) && !(cardList.some((element) => { return bird.bird_id === element.bird_id}));
+        return bird.bird_common_name.toUpperCase().includes(birdName.toUpperCase()) && !(cardList.some((element) => { return bird.bird_id === element.bird_id }));
       });
       if (filtered.length === 1 && filtered[0] === birdName) {
         setSuggestedBirds([]);
@@ -94,9 +93,9 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
   }, [birdName]);
 
   useEffect(() => {
-   if (Array.isArray(birdCards)) {
-    setCardList(birdCards)
-   };
+    if (Array.isArray(birdCards)) {
+      setCardList(birdCards)
+    };
 
   }, [birdCards])
 
@@ -182,7 +181,7 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
         setAddressOptions([noAddresses]);
         setAddressValReturned(true);
       })
-      // not really sure about the lines below so leaving them for now.
+    // not really sure about the lines below so leaving them for now.
     setZip('');
     setStreet('');
     setState('');
@@ -207,7 +206,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
       location: locationObj,
       // photo: birdURL
     };
-    console.log(birdInfo);
 
     axios.post('/birds', birdInfo)
       .then((data) => {
@@ -232,27 +230,27 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
         <br />
         <form>
           {!birdSugClicked && (
-          <div
-            className="dropdown">
-            <label>Birds Common Name</label>
-            <input
-              type="text"
-              placeholder="ex. cardinal"
-              onChange={onBirdName}
-            />
-            {(suggestedBirds.length > 0) && (
-              <div className="bird-suggestions">
-                {suggestedBirds.map((bird, i) => {
-                  // console.log(bird);
-                  return (
-                    <option  className="bird-suggestion-entry" key={i}
-                    onClick={() => { suggestionClicked(bird); }}>
-                      {bird.bird_common_name}
-                    </option>
-                  );
-                })}
-              </div>)}
-          </div>)}
+            <div
+              className="dropdown">
+              <label>Birds Common Name</label>
+              <input
+                type="text"
+                placeholder="ex. cardinal"
+                onChange={onBirdName}
+              />
+              {(suggestedBirds.length > 0) && (
+                <div className="bird-suggestions">
+                  {suggestedBirds.map((bird, i) => {
+                    // console.log(bird);
+                    return (
+                      <option className="bird-suggestion-entry" key={i}
+                        onClick={() => { suggestionClicked(bird); }}>
+                        {bird.bird_common_name}
+                      </option>
+                    );
+                  })}
+                </div>)}
+            </div>)}
           {birdSugClicked && <div>{`You Clicked ${birdName}`}</div>}
           <br />
           <br />
@@ -307,9 +305,9 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
           )}
           <br />
           <br />
-              <label>Select a Photo of the Bird Seen!</label>
-              <input type="file"   />
-              <br />
+          <label>Select a Photo of the Bird Seen!</label>
+          <input type="file" />
+          <br />
           {/*use birdURL and setBirdURL to store url in state, once set i'd check with Andy for what all needs to happen along the req chain starting with variable passed from here*/}
           <br />
           {(!waiting) && <button type="submit" onClick={submitForm}>Submit</button>}

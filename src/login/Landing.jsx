@@ -94,7 +94,7 @@ const Landing = ({ setGlobalUser, globalUser }) => {
       <Container>
         <div className="outermotion">
           <h1>Birder</h1>
-          <motion.div
+          {/* <motion.div
             style={{ display: 'flex' }}
             animate={{ x: [-140, 155, -140], y: [0, 20, -170, -170, 0], rotateY: [0, 180, 0] }}
             transition={{ duration: 7, repeat: 'Infinity' }}
@@ -105,7 +105,7 @@ const Landing = ({ setGlobalUser, globalUser }) => {
             onHoverEnd={(e) => {}}
           >
             <Icon icon="mdi:bird" color="#d9f0ff" width="100" height="100" />
-          </motion.div>
+          </motion.div> */}
         </div>
         <LandingButton onClick={() => login()}>Login</LandingButton>
         <button type="button" onClick={() => play()}>Full User Experience</button>

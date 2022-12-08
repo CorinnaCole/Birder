@@ -24,7 +24,7 @@ const BirdBinderEntry = ({bird, clicked}) => {
           <div className="binder-tag">{`Last Seen: ${bird.last_seen}` }</div>
           <div className="binder-tag">{`Spotted At: ${locations[Math.floor(Math.random() * locations.length)]}`} </div>
           <h3>Personal Notes</h3>
-          <div className="binder-description">{(bird.note || bird.notes) || (bird.summary || 'no personal notes or summary on file')}</div>
+          <div className="binder-description">{(bird.sighting_notes || bird.notes) || (bird.summary || 'no personal notes or summary on file')}</div>
         </aside>
       </div>
     </div>

@@ -9,7 +9,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/function-component-definition */
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import BirdBinderEntry from './BirdBinderEntry.jsx';
 import BirdCard from './birdCard.jsx';
 import NewBirdForm from './NewBirdForm.jsx';
@@ -17,7 +17,7 @@ import './assets/BirdList.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-const BirdList = ({userID, friend, back, allBirds}) => {
+const BirdList = ({ userID, friend, back, allBirds }) => {
   // need some menu or toggle switch to determine card sort
   const [addingBird, setAddingBird] = useState(false);
   const [currUser, setCurrUser] = useState(false);
@@ -43,7 +43,7 @@ const BirdList = ({userID, friend, back, allBirds}) => {
       .then((data) => {
         let copy1 = data.data.slice();
         let copy2 = data.data.slice();
-
+        //I think this is for setting the two different searches (alphabetical and last seen?)
         let sorted = copy1.sort(function compareFn(a, b) {
           if (a.common_name.toUpperCase() < b.common_name.toUpperCase()) {
             return -1;
@@ -129,18 +129,18 @@ const BirdList = ({userID, friend, back, allBirds}) => {
       {!cardView && (
         <div>
           <h1>Bird Collection</h1>
-          <button onClick={() => {history.push('/user')}}>Return Home</button>
-           <br/>
-           <br/>
+          <button onClick={() => { history.push('/user') }}>Return Home</button>
+          <br />
+          <br />
           {!currUser && <button onClick={back}>Back to Friend List</button>}
           {currUser && <button onClick={nowAddingBird}>Add Bird Sighting</button>}
           {/* filter option for alphabetical and something else date scene? */}
-          <br/>
-          <br/>
+          <br />
+          <br />
           {sort && <button onClick={sortChange}>Alphabetical</button>}
           {!sort && <button onClick={sortChange}>Most Recent</button>}
-          <br/>
-          <br/>
+          <br />
+          <br />
           {(cardRows.length > 0) && cardRows.map((row, i) => {
             if (row[1]) {
               return (
@@ -160,11 +160,11 @@ const BirdList = ({userID, friend, back, allBirds}) => {
         return <BirdBinderEntry key={i} />
       })} */}
 
-          {addingBird && <NewBirdForm close={() => { setAddingBird(); } } allBirds={allBirds} userID={userID} birdCards={birds}
-          update={() => {getBirdInfo()}} />}
+          {addingBird && <NewBirdForm close={() => { setAddingBird(); }} allBirds={allBirds} userID={userID} birdCards={birds}
+            update={() => { getBirdInfo() }} />}
         </div>
       )}
-      {cardView && <BirdCard bird={cardsBird} back={() => {cardClicked()}} userID={userID} />}
+      {cardView && <BirdCard bird={cardsBird} back={() => { cardClicked() }} userID={userID} />}
     </div>
   );
 };

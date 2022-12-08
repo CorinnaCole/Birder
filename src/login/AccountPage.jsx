@@ -55,18 +55,7 @@ const AccountPage = ({ globalUser, setGlobalUser }) => {
         fontSize: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center',
       }}
       >
-        <motion.div
-          style={{ display: 'flex' }}
-          animate={{ x: [-190, 190, 190, -190, -190], y: [0, 0, 400, 400, 0], rotateY: [0, 180, 0] }}
-          transition={{ duration: 9, repeat: 'Infinity' }}
-          whileHover={{
-            scale: 2,
-          }}
-          onHoverStart={(e) => {}}
-          onHoverEnd={(e) => {}}
-        >
-          <Icon icon="mdi:bird" color="#d9f0ff" width="100" height="100" />
-        </motion.div>
+
         <div style={{ paddingBottom: '20px' }}>{`Welcome ${userName}!`}</div>
         <img referrerPolicy="no-referrer" alt="profile" style={{ borderRadius: '50%', height: '70px', width: '70px' }} src={globalUser.picture} />
       </div>

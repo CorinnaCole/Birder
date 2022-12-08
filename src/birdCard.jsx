@@ -78,8 +78,16 @@ const Container = styled.div`
   margin-top: 20vh;
   width: 40vh;
   `;
+
+
 const BirdCard = ({bird, back}) => {
   const [flip, setFlip] = useState(false);
+
+  useEffect(()=>{
+    console.log(bird, 'here is the bird');
+
+  }, [])
+
   return (
     <div>
     <ReactCardFlip
@@ -102,18 +110,18 @@ const BirdCard = ({bird, back}) => {
             <div>Times seen: {bird.count}</div>
             <h3>Decription</h3>
             <Decription>
-             {bird.summary}
+            {bird.summary}
             </Decription>
             <h3>Personal Notes</h3>
-            <Decription>{bird.note}</Decription>
+            <Decription>{bird.sighting_notes[0]}</Decription>
           </aside>
         </SectionCard>
       </Container>
       <Container2>
-        <SectionCard2 onClick={() => setFlip(!flip)}>
+        <SectionCard2>
           <aside>
-            <h3>Sighting Locations</h3>
-            <Map locations={bird.bird_location} />
+            <h3  onClick={() => setFlip(!flip)}>Sighting Locations</h3>
+            <Map birdArrayLocations={bird.bird_location} />
           </aside>
         </SectionCard2>
 
