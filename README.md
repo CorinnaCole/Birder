@@ -1,4 +1,4 @@
-**Birder**
+**<h1>Birder</h1>**
 
 **<h2 style="text-decoration:underline;">Overview:</h2>**
 
@@ -69,15 +69,12 @@ The following diagram demonstrates the relationships between the tables. Note th
 
 ![db relationships](./database/ETL/database_relations.png)
 
-
 **<h2> External APIs:</h2>**
 The app utilizes the following APIs:
 * Auth0 for Google Account login
 * Cloudinary for to generate urls of uploaded photos
 * Integrated Taxonomic Information System to retrieve the scientific name of the birds, which in turn is used to access the
 * Wikipedia api to retrieve the summary of the bird to populate the bird detail description.
-
-**<h2> How to start and run the app:</h2>**
 
 **<h2> Issues and To Dos: </h2>**
 Below is a list of known issues with the app and proposed fixes and/or yet-to-be-built functionalities:
