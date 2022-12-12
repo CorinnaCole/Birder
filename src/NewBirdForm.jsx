@@ -12,6 +12,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 const ModalBackground = styled.div`{
   width: 100%;
@@ -54,7 +58,6 @@ const DropDownDiv = styled.div`
 `
 
 const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
-  const [birdName, setBirdName] = useState('');
   const [note, setNote] = useState('');
   const [dateSeen, setDateSeen] = useState('');
   const [suggestedBirds, setSuggestedBirds] = useState([]);
@@ -69,28 +72,14 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
   const [locationObj, setLocationObj] = useState({});
   const [addressValReturned, setAddressValReturned] = useState(false);
   const [waiting, setWaiting] = useState(false);
-  const [birdID, setBirdID] = useState(0);
   const [birdSugClicked, setBirdSugClicked] = useState(false);
   const [cardList, setCardList] = useState([]);
   const [birlURL, setBirdURL] = useState('');
-
-  useEffect(() => {
-    if (birdName.length !== 0) {
-      console.log(birdName, 'inside birdName useeffect');
-      // sort all users where username or birds sceen name matches term
-      const filtered = allBirds.filter((bird) => {
-        return bird.bird_common_name.toUpperCase().includes(birdName.toUpperCase()) && !(cardList.some((element) => { return bird.bird_id === element.bird_id }));
-      });
-      if (filtered.length === 1 && filtered[0] === birdName) {
-        setSuggestedBirds([]);
-      } else {
-        setSuggestedBirds(filtered);
-      }
-    } else {
-      setSuggestedBirds([]);
-      console.log('done typing bird name');
-    }
-  }, [birdName]);
+  const [birdName, setBirdName] = useState('');
+  const [typedBirdName, setTypedBirdName] = useState('');
+  const [birdID, setBirdID] = useState(0);
+  const [inputValue, setInputValue] = useState(' ');
+  const [value, setValue] = useState(' ');
 
   useEffect(() => {
     if (Array.isArray(birdCards)) {
@@ -99,17 +88,17 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
 
   }, [birdCards])
 
-  // useEffect(() => {
-  //   const birdOptions = allBirds.map(bird => {
-  //     const newBird = Object.assign({}, bird);
-  //     console.log(newBird)
-  //     newBird.label = bird.bird_common_name;
-  //     return newBird;
-  //   })
-  //   setSuggestedBirds(birdOptions);
-  //   console.log(birdOptions);
+  useEffect(() => {
+    const birdOptions = allBirds.map(bird => {
+      const newBird = Object.assign({}, bird);
+      console.log(newBird)
+      newBird.label = bird.bird_common_name;
+      return newBird;
+    })
+    setSuggestedBirds(birdOptions);
+    console.log(birdOptions);
 
-  // }, [])
+  }, [])
 
   const onBirdName = (e) => {
     setBirdName(e.target.value);
@@ -194,29 +183,46 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
     setAddressValReturned(false);
   };
 
+  const handleChangeInValue = (event) => {
+    if (typedBirdName) {
+      setBirdName(typedBirdName)
+      setBirdID(0)
+    } else {
+      setValue(newValue);
+      setBirdID(newValue.bird_id ? newValue.bird_id : 0)
+      setBirdName(newValue.bird_common_name)
+    }
+  }
+
+  const handleChangeInInputValue = (event) => {
+    // if ()
+    // console.log('why am I in here?', newInputValue)
+    // setInputValue(newInputValue);
+    // setTypedBirdName(newInputValue);
+  }
 
   const submitForm = (event) => {
     event.preventDefault();
     const birdInfo = {
-      commonName: birdName,
+      commonName: typedBirdName ? typedBirdName : birdName,
       note: note,
       dateSeen: dateSeen,
       user_id: userID,
-      bird_id: birdID,
+      bird_id: birdID ? birdID : 0,
       location: locationObj,
       // photo: birdURL
     };
-
+    console.log('birdInfo >', birdInfo)
     axios.post('/birds', birdInfo)
-      .then((data) => {
-        console.log('bird post data: ', data);
-        // propably update too
-        update();
-        close();
-      })
-      .catch((err) => {
-        console.log('error posting bird sighting: ', err);
-      });
+    .then((data) => {
+      console.log('bird post data: ', data);
+      // propably update too
+      update();
+      close();
+    })
+    .catch((err) => {
+      console.log('error posting bird sighting: ', err);
+    });
   };
 
   return (
@@ -229,31 +235,40 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
         <br />
         <br />
         <form>
-          {!birdSugClicked && (
-            <div
-              className="dropdown">
-              <label>Birds Common Name</label>
-              <input
-                type="text"
-                placeholder="ex. cardinal"
-                onChange={onBirdName}
-              />
-              {(suggestedBirds.length > 0) && (
-                <div className="bird-suggestions">
-                  {suggestedBirds.map((bird, i) => {
-                    // console.log(bird);
-                    return (
-                      <option className="bird-suggestion-entry" key={i}
-                        onClick={() => { suggestionClicked(bird); }}>
-                        {bird.bird_common_name}
-                      </option>
-                    );
-                  })}
-                </div>)}
-            </div>)}
-          {birdSugClicked && <div>{`You Clicked ${birdName}`}</div>}
-          <br />
-          <br />
+          <Stack
+            sx={{ width: '500px' }} >
+            <Autocomplete
+              freeSolo
+              id="multiple-limit-tags"
+              getOptionLabel={(suggestedBirds) => `${suggestedBirds.label}`}
+              options={suggestedBirds}
+              sx={{ width: '300px' }}
+              inputValue={inputValue}
+              value={value}
+              onChange={(event, newValue) => {
+                handleChangeInValue();
+                // console.log('inside value state', newValue)
+              }}
+              onInputChange={(event, newInputValue) => {
+                console.log('why am I in here?', newInputValue)
+                setInputValue(newInputValue);
+                setTypedBirdName(newInputValue);
+              }}
+              renderOption={(props, suggestedBirds) => (
+                <Box component="li" {...props}
+                  key={suggestedBirds.bird_id}>
+                  {suggestedBirds.label}
+                </Box>
+              )}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="ex: cardinal"
+                  InputProps={{ ...params.InputProps, type: 'search' }}
+                />
+              )}
+            />
+          </Stack>
           <label>Personal Note</label>
           <input type="textarea" placeholder="a place to jot down your thoughts on this or future birdsightings" onChange={onNote} />
           <br />

@@ -54,7 +54,7 @@ const getAllBirdCardInfo = (user_id) => {
       SELECT array_agg(bird_id) AS arr FROM bird_user WHERE user_id = $1
     ) SELECT array_agg(
       json_build_object (
-        'user_id', 3,
+        'user_id', $1,
         'bird_id', birds.bird_id,
         'common_name',birds.bird_common_name,
         'scentific_name',birds.scentific_name,
