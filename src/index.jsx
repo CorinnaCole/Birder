@@ -115,14 +115,11 @@ const MainComponent = () => {
               globalUser={globalUser} />
             {' '}
           </Route>
-          <Route
-            path="/createUser">
+          <Route path="/createUser">
             <UserSignUp
               globalUser={globalUser} />
           </Route>
-
-          <Route
-            exact path="/">
+          <Route exact path="/">
             <App
               globalUser={globalUser}
               setGlobalUser={setGlobalUser}
@@ -143,7 +140,6 @@ const MainComponent = () => {
             <Discover
               allBirds={allBirds} />
           </Route>
-
           <Route path="/friendsList">
             <FriendsList
               userID={userID}

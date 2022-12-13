@@ -12,10 +12,12 @@ import ImageUpload from './imageUpload/ImageUpload.jsx'
 const App = ({ globalUser, setGlobalUser }) => (
   <>
     <video autoPlay loop muted id="video">
-      <source src={require('./assets/mixkit-flock-of-seagulls-in-the-sky-17978-medium.mp4').default} type="video/mp4" />
+      <source src={require('./assets/ducksVideo.mp4').default} type="video/mp4" />
     </video>
-    {/* <img id='parrot' src={require( './assets/101335-parrot.gif').default} /> */}
-    <Landing globalUser={globalUser} setGlobalUser={setGlobalUser} />
+
+    <Landing
+      globalUser={globalUser}
+      setGlobalUser={setGlobalUser} />
   </>
 
 );

@@ -8,35 +8,57 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AccountPage from './AccountPage.jsx';
+import { FaGoogle, FaKiwiBird } from 'react-icons/fa';
 import UserSignUp from './UserSignUp.jsx';
 import chirp from '../assets/birds-chirping-04-6771.mp3';
+// import {Container, LandingButton, GreetingAndLogo} from '../styled/styledComponents';
 
 const Container = styled.div`
+  box-sizing: border-box;
   display: grid;
   justify-content: center;
   align-content: space-evenly;
   height: 500px;
   width: 500px;
-  background-color: #686868;
-  border:solid;
+  background-color: white;
   border-radius: 25px;
-  box-shadow: 5px 5px 10px;
-  opacity: .95;
+  padding: 26px;
+  justify-items: center;
 `;
+
 
 const LandingButton = styled.button`
   height: 100px;
   width: 200px;
+  background-color: #6497ef;
+  font-family: Manrope,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #fff;
+  height: 48px;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-size: 24px;
+  background-position: 16px;
+  width: 60%;
+  border: 0;
+  padding: 0 12px;
+  svg {
+    padding-right: 10px;
+  }
 `;
 
-const userdb = {
-  firstName: 'brian',
-  lastName: 'stern',
-  email: 'sterno2510@gmail.com',
-  username: 'sterno2510',
-  profileurl: '',
-  zipcode: '08901',
-};
+const GreetingAndLogo = styled.div`
+  color: #32690f;
+  svg {
+    font-size: 5em;
+    color: #32690f
+  }
+`
 
 const Landing = ({ setGlobalUser, globalUser }) => {
   const [addUserToggle, setAddUserToggle] = useState(false);
@@ -90,35 +112,29 @@ const Landing = ({ setGlobalUser, globalUser }) => {
   return (
     <>
       {!isAuthenticated
-      && (
-      <Container>
-        <div className="outermotion">
-          <h1>Birder</h1>
-          {/* <motion.div
-            style={{ display: 'flex' }}
-            animate={{ x: [-140, 155, -140], y: [0, 20, -170, -170, 0], rotateY: [0, 180, 0] }}
-            transition={{ duration: 7, repeat: 'Infinity' }}
-            whileHover={{
-              scale: 2,
-            }}
-            onHoverStart={(e) => {}}
-            onHoverEnd={(e) => {}}
-          >
-            <Icon icon="mdi:bird" color="#d9f0ff" width="100" height="100" />
-          </motion.div> */}
-        </div>
-        <LandingButton onClick={() => login()}>Login</LandingButton>
-        <button type="button" onClick={() => play()}>Full User Experience</button>
-      </Container>
-      )}
+        && (
+          <Container>
+            <GreetingAndLogo className="outermotion">
+              <h1>Welcome back to Birder.</h1>
+              <FaKiwiBird/>
+              <h2>Log in to see your feathered friends</h2>
+
+            </GreetingAndLogo>
+            <LandingButton
+              onClick={() => login()}>
+              <FaGoogle />
+              Continue with Google
+            </LandingButton>
+          </Container>
+        )}
       {isAuthenticated
-      && (
-      <AccountPage
-        logoutWithRedirect={logoutWithRedirect}
-        globalUser={globalUser}
-        setGlobalUser={setGlobalUser}
-      />
-      )}
+        && (
+          <AccountPage
+            logoutWithRedirect={logoutWithRedirect}
+            globalUser={globalUser}
+            setGlobalUser={setGlobalUser}
+          />
+        )}
     </>
   );
 };

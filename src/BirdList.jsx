@@ -43,7 +43,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
       .then((data) => {
         let copy1 = data.data.slice();
         let copy2 = data.data.slice();
-        //I think this is for setting the two different searches (alphabetical and last seen?)
         let sorted = copy1.sort(function compareFn(a, b) {
           if (a.common_name.toUpperCase() < b.common_name.toUpperCase()) {
             return -1;
