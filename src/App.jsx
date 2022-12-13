@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable import/extensions */
+/* eslint-disable react/function-component-definition */
+import React, { useState, useEffect } from 'react';
 import './assets/App.css';
-import Landing from './Landing.jsx';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Landing from './login/Landing.jsx';
+// import backgroundVideo from './assets/106433-bird-flock-test.mp4';
+// import FlyingBird from './assets/101335-parrot.gif';
+import ImageUpload from './imageUpload/ImageUpload.jsx'
+const App = ({ globalUser, setGlobalUser }) => (
+  <>
+    <video autoPlay loop muted id="video">
+      <source src={require('./assets/ducksVideo.mp4').default} type="video/mp4" />
+    </video>
 
-const Component = React.forwardRef((props, ref) => (
-  <Icon icon="mdi:bird" color="#d9f0ff" width="100" height="100"ref={ref} />
-))
-const MovingBird = motion(Component);
+    <Landing
+      globalUser={globalUser}
+      setGlobalUser={setGlobalUser} />
+  </>
 
-export default function App() {
+);
 
-  return (
-    <>
-     <motion.div style={{alignItems:'left'}}
-      initial={{x:50}}
-      animate={{ x: "calc(100vw - 50%)" }}
-      transition={{ duration: 20 }}>
-        <Icon icon="mdi:bird" color="#d9f0ff" width="100" height="100"/>
-      </motion.div>
-      <h1>Birder</h1>
-      <Landing />
-    </>
-  );
-}
+export default App;

@@ -10,12 +10,12 @@ const config = {
   user: process.env.PGUSER,
   database: process.env.PGDATABASE,
   port: process.env.PGPORT,
-  password: process.env.PGPASSWORD,
+  // password: process.env.PGPASSWORD,
 };
 
 const pool = new Pool(config);
 console.log('CONNECTED TO POSTGRES');
 
 module.exports = {
-  pool,
+  pool
 }

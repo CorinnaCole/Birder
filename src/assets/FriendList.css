@@ -1,0 +1,49 @@
+.friend {
+  background-color: gray;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+  min-width: 375px;
+}
+
+.friends-name {
+  align-self: center;
+}
+
+.friends-suggestions {
+  background-color: rgb(71, 71, 71);
+  position:absolute;
+  z-index: 1;
+}
+
+.friends-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.friend-entry {
+  border: 1px solid #ddd;
+  width: 255px;
+}
+
+.friend-search {
+  margin-top: 20px;
+  width: 250px;
+}
+
+.button-container-friend {
+  align-self: center;
+}
+
+.friend-button-chat {
+  margin-right: 3px;
+}
+
+.friend-button-bird {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.discover {
+  max-width: 700px;
+}
