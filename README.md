@@ -5,13 +5,33 @@
 Designed for birdwatching enthusiasts, Birder allows birdwatchers to keep track of when and where they have sighted a bird and to socialize via chat with other birdwatchers.
 
 **<h2 style="text-decoration:underline;"> Table of Contents:</h2>**
-* App description
-* Page organization
-* Database organization
-* External APIs used
-* How to start and run the app
-* Issues and To-Dos
 
+* [Tech Stack and External APIs](#-tech-stack-and-external-apis)
+* [App description](#-app-description)
+* [Database organization](#database)
+* [How to start and run the app](#-how-to-start-and-run-the-app-)
+* [Issues and To-Dos](#-issues-and-to-dos-)
+
+**<h2> Tech Stack and External APIs:</h2>**
+The app utilizes the following tech stack:
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
+![REACT](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![REACT Router](https://img.shields.io/badge/React%20Router-CA4245.svg?style=for-the-badge&logo=React-Router&logoColor=white)
+![CSS Styled Components](https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white)
+![Auth0](https://img.shields.io/badge/Auth0-EB5424.svg?style=for-the-badge&logo=Auth0&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-007FFF.svg?style=for-the-badge&logo=MUI&logoColor=white)
+![AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E.svg?style=for-the-badge&logo=Amazon-AWS&logoColor=white)
+
+
+The app utilizes the following APIs:
+* Auth0 for Google Account login
+* Cloudinary for to generate urls of uploaded photos
+* Integrated Taxonomic Information System to retrieve the scientific name of the birds, which in turn is used to access the
+* Wikipedia api to retrieve the summary of the bird to populate the bird detail description.
 
 **<h2 style="text-decoration:underline;"> App Description</h2>**
 The user should be able to access this app from the browser utilizing their Google account.
@@ -69,12 +89,8 @@ The following diagram demonstrates the relationships between the tables. Note th
 
 ![db relationships](./database/ETL/database_relations.png)
 
-**<h2> External APIs:</h2>**
-The app utilizes the following APIs:
-* Auth0 for Google Account login
-* Cloudinary for to generate urls of uploaded photos
-* Integrated Taxonomic Information System to retrieve the scientific name of the birds, which in turn is used to access the
-* Wikipedia api to retrieve the summary of the bird to populate the bird detail description.
+
+**<h2> How to start and run the app: </h2>**
 
 **<h2> Issues and To Dos: </h2>**
 Below is a list of known issues with the app and proposed fixes and/or yet-to-be-built functionalities:
