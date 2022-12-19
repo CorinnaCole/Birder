@@ -51,6 +51,7 @@ const UpdateForm = ({ setUpdate, update, globalUser }) => {
   const [user, setUser] = useState({});
   const history = useHistory();
   const [userSet, setUserSet] = useState(false);
+  const newUser = {};
 
   useEffect(() => {
     axios.get('/getUser', { params: { email: globalUser.email } })
