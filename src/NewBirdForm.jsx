@@ -77,9 +77,7 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
   const [birlURL, setBirdURL] = useState('');
   const [birdName, setBirdName] = useState('');
   const [typedBirdName, setTypedBirdName] = useState('');
-  const [birdID, setBirdID] = useState(0);
-  const [inputValue, setInputValue] = useState(' ');
-  const [value, setValue] = useState(' ');
+  const [selectedImage, setSelectedImage] = useState([]);
 
   useEffect(() => {
     if (Array.isArray(birdCards)) {
@@ -99,10 +97,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
     console.log(birdOptions);
 
   }, [])
-
-  const onBirdName = (e) => {
-    setBirdName(e.target.value);
-  };
 
   const onNote = (e) => {
     setNote(e.target.value);
@@ -134,13 +128,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
 
   const typeAddressIn = () => {
     setTypeAddress(!typeAddress);
-  };
-
-  const suggestionClicked = (bird) => {
-    console.log('suggestion clicked', bird.bird_common_name);
-    setBirdName(bird.bird_common_name);
-    setBirdID(bird.bird_id);
-    setBirdSugClicked(true);
   };
 
   const getAddressFromBrowser = () => {
@@ -183,48 +170,80 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
     setAddressValReturned(false);
   };
 
-  const handleChangeInValue = (event) => {
-    if (typedBirdName) {
-      setBirdName(typedBirdName)
-      setBirdID(0)
-    } else {
-      setValue(newValue);
-      setBirdID(newValue.bird_id ? newValue.bird_id : 0)
-      setBirdName(newValue.bird_common_name)
+  const handleTypingBirdName = (event, newInputValue) => {
+    if (newInputValue !== "undefined") {
+      console.log('cj', newInputValue)
+      setTypedBirdName(newInputValue);
     }
   }
 
-  const handleChangeInInputValue = (event) => {
-    // if ()
-    // console.log('why am I in here?', newInputValue)
-    // setInputValue(newInputValue);
-    // setTypedBirdName(newInputValue);
+  const getBirdUrl = async (picture) => {
+
+
+    const formData = new FormData()
+    formData.append('file', selectedImage);
+    formData.append('upload_preset', 'eocwrax6'  )
+
+
+  const postImage = async () => {
+    try {
+      const response = await axios.post(
+        '/image-upload'
+      )
+      setImageData(response.data)
+    }
+    catch( error) {
+      console.error(error)
+    }
   }
+  postImage()
+
+
+    // try {
+    //   console.log(selectedImage, ' <selectedimage')
+    //   let response = await axios.post('/image-upload', {
+    //     image: picture
+    //   })
+    //   setBirdURL(response);
+    //   console.log(response);
+    // } catch (err) {
+    //   console.log('there is an error in posting to cloudinary')
+    // }
+  };
+
 
   const submitForm = (event) => {
     event.preventDefault();
+    const foundBird = suggestedBirds.find(bird => bird.bird_common_name === typedBirdName)
     const birdInfo = {
-      commonName: typedBirdName ? typedBirdName : birdName,
+      commonName: foundBird ? foundBird.bird_common_name : typedBirdName,
       note: note,
       dateSeen: dateSeen,
       user_id: userID,
-      bird_id: birdID ? birdID : 0,
+      bird_id: foundBird ? foundBird.bird_id : 0,
       location: locationObj,
       // photo: birdURL
     };
+
     console.log('birdInfo >', birdInfo)
-    axios.post('/birds', birdInfo)
-    .then((data) => {
-      console.log('bird post data: ', data);
-      // propably update too
-      update();
-      close();
-    })
-    .catch((err) => {
-      console.log('error posting bird sighting: ', err);
-    });
+    getBirdUrl(selectedImage);
+    // axios.post('/birds', birdInfo)
+    // .then((data) => {
+    //   console.log('bird post data: ', data);
+    //   // propably update too
+    //   update();
+    //   close();
+    // })
+    // .catch((err) => {
+    //   console.log('error posting bird sighting: ', err);
+    // });
   };
 
+  // testing - try using for other values
+  // const setFormDetails = (event, key, value) => {
+  //   form[key] = value;
+  //   setForm(form)
+  // }
   return (
     <ModalBackground>
       <ModalContainer>
@@ -243,20 +262,10 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
               getOptionLabel={(suggestedBirds) => `${suggestedBirds.label}`}
               options={suggestedBirds}
               sx={{ width: '300px' }}
-              inputValue={inputValue}
-              value={value}
-              onChange={(event, newValue) => {
-                handleChangeInValue();
-                // console.log('inside value state', newValue)
-              }}
-              onInputChange={(event, newInputValue) => {
-                console.log('why am I in here?', newInputValue)
-                setInputValue(newInputValue);
-                setTypedBirdName(newInputValue);
-              }}
+              inputValue={typedBirdName}
+              onInputChange={handleTypingBirdName}
               renderOption={(props, suggestedBirds) => (
-                <Box component="li" {...props}
-                  key={suggestedBirds.bird_id}>
+                <Box component="li" {...props} key={suggestedBirds.bird_id}>
                   {suggestedBirds.label}
                 </Box>
               )}
@@ -264,22 +273,25 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
                 <TextField
                   {...params}
                   label="ex: cardinal"
-                  InputProps={{ ...params.InputProps, type: 'search' }}
+                  InputProps={{ ...params.InputProps, type: 'text' }}
                 />
               )}
             />
           </Stack>
           <label>Personal Note</label>
-          <input type="textarea" placeholder="a place to jot down your thoughts on this or future birdsightings" onChange={onNote} />
+          <input type="textarea"
+            placeholder="a place to jot down your thoughts on this or future birdsightings"
+          //   onChange={(event) => {
+          //     setFormDetails(event, 'note', event.target.value)
+          //   }
+          // }
+          />
           <br />
           <br />
           <label>Date Seen</label>
           <input type="date" onChange={onDateSeen} />
           <br />
           <br />
-          {/* <label>Nickname of Location seen</label>
-          <input type="text" placeholder="ex. park on 1st" onChange={onPlaceName} />
-          <br /> */}
           <button className="bird-right" type="button" onClick={getAddressFromBrowser}>grab location</button>
           <button className="bird-left" onClick={typeAddressIn} type="button">fill out location or zip</button>
           {typeAddress && (
@@ -321,7 +333,9 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
           <br />
           <br />
           <label>Select a Photo of the Bird Seen!</label>
-          <input type="file" />
+          <input type="file"
+            onChange={(e) => setSelectedImage(e.target.files[0])}
+          />
           <br />
           {/*use birdURL and setBirdURL to store url in state, once set i'd check with Andy for what all needs to happen along the req chain starting with variable passed from here*/}
           <br />

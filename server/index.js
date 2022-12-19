@@ -37,20 +37,21 @@ app.post("/image-upload", (request, response) => {
   // collected image from a user
   const data = {
     image: request.body.image,
-  }
+  };
+  console.log(request.body.image, ' request.body.image');
   // upload image here
-  cloudinary.uploader.upload(data.image)
-  .then((result) => {
-    response.status(200).send({
-      message: "success",
-      result,
-    });
-  }).catch((error) => {
-    response.status(500).send({
-      message: "failure",
-      error,
-    });
-  });
+  // cloudinary.uploader.upload(data.image)
+  // .then((result) => {
+  //   response.status(200).send({
+  //     message: "success",
+  //     result,
+  //   });
+  // }).catch((error) => {
+  //   response.status(500).send({
+  //     message: "failure",
+  //     error,
+  //   });
+  // });
 });
 
 
