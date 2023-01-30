@@ -22,7 +22,6 @@ const getBirdCards = (req, res) => {
     let results = [];
     if (data.rows[0]) {
       results = data.rows[0].birdcardinfo
-      // console.log('results from within getBirdCards ', results);
     }
     res.status(200).send(results);
   })
@@ -30,12 +29,6 @@ const getBirdCards = (req, res) => {
     console.log('ERROR IN GETBIRDCARDS ', err);
   })
 }
-
-// bird address validation: https://developers.google.com/maps/documentation/address-validation/requests-validate-address  get location in geocode
-// requests will be sent to https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY
-
-// animalData[0]['ax21:anyMatchList'].map(i => i['ax21:sciName'])[1][0]
-// animalData[0]["ax21:anyMatchList"].map(i => i["ax21:commonNameList"]).flat().map(i =>i["ax21:commonNames"]).flat().map(i => i['ax21:commonName']).flat()
 
 
 const getGeoLocFromAddress = async (req, res) => {
@@ -88,11 +81,8 @@ const getWikiSummary = async (scientificName) => {
 }
 
 const postBird = async (req, res) => {
-  // console.log('posting bird req body:', req.body);
-  // res.send('testing bird post');
-
   let bodyName = req.body.commonName;
-  const lat = req.body.location.lat || null; //requires that location is an object with lat and lng properties
+  const lat = req.body.location.lat || null;
   const lng = req.body.location.lng || null;
   const note = req.body.note; // user notes
   const dateSeen = req.body.dateSeen;
