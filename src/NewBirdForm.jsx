@@ -177,37 +177,47 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
     }
   }
 
-  const getBirdUrl = async (picture) => {
-
-
-    const formData = new FormData()
-    formData.append('file', selectedImage);
-    formData.append('upload_preset', 'eocwrax6'  )
-
-
-  const postImage = async () => {
-    try {
-      const response = await axios.post(
-        '/image-upload'
-      )
-      setImageData(response.data)
-    }
-    catch( error) {
-      console.error(error)
-    }
+  const handleFileChange = (e) => {
+    setSelectedImage(e.target.files[0])
+    console.log(e.target.files[0], selectedImage)
   }
-  postImage()
+
+  const getBirdUrl = async (picture) => {
+    const formData = new FormData()
+    formData.append('image', selectedImage);
+    formData.append('upload_preset', 'eocwrax6')
+
+    console.log('sel image', selectedimage)
+    const postImage = async () => {
+      try {
+        const response = await axios.post('/image-upload', {
+          image: formData
+        },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            }
+          }
+        )
+        console.log(response.data)
+        // setImageData(response.data)
+      }
+      catch (error) {
+        console.error(error)
+      }
+    }
+    postImage()
 
 
     // try {
-    //   console.log(selectedImage, ' <selectedimage')
+    // console.log(selectedImage, ' <selectedimage')
     //   let response = await axios.post('/image-upload', {
     //     image: picture
     //   })
     //   setBirdURL(response);
-    //   console.log(response);
+    // console.log(response);
     // } catch (err) {
-    //   console.log('there is an error in posting to cloudinary')
+    // console.log('there is an error in posting to cloudinary')
     // }
   };
 
@@ -229,13 +239,13 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
     getBirdUrl(selectedImage);
     // axios.post('/birds', birdInfo)
     // .then((data) => {
-    //   console.log('bird post data: ', data);
+    // console.log('bird post data: ', data);
     //   // propably update too
     //   update();
     //   close();
     // })
     // .catch((err) => {
-    //   console.log('error posting bird sighting: ', err);
+    // console.log('error posting bird sighting: ', err);
     // });
   };
 
@@ -333,9 +343,7 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
           <br />
           <br />
           <label>Select a Photo of the Bird Seen!</label>
-          <input type="file"
-            onChange={(e) => setSelectedImage(e.target.files[0])}
-          />
+          <input type="file" onChange={handleFileChange} />
           <br />
           {/*use birdURL and setBirdURL to store url in state, once set i'd check with Andy for what all needs to happen along the req chain starting with variable passed from here*/}
           <br />

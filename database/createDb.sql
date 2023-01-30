@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS blue_ocean;
+-- DROP DATABASE IF EXISTS birder;
 
--- CREATE DATABASE blue_ocean;
+-- CREATE DATABASE birder;
 
 CREATE TABLE
   users (

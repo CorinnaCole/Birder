@@ -35,6 +35,7 @@ app.get("/testing", (request, response) => {
 // testing image upload endpoint
 app.post("/image-upload", (request, response) => {
   // collected image from a user
+  console.log(response.body)
   const data = {
     image: request.body.image,
   };
