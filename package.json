@@ -1,5 +1,5 @@
 {
-  "name": "blueocean",
+  "name": "Birder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vermillion-birds/blueOcean.git"
+    "url": "git+https://github.com/CorinnaCole/Birder.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vermillion-birds/blueOcean/issues"
+    "url": "https://github.com/CorinnaCole/Birder/issues"
   },
-  "homepage": "https://github.com/vermillion-birds/blueOcean#readme",
+  "homepage": "https://github.com/CorinnaCole/Birder",
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
     "@babel/core": "^7.20.2",

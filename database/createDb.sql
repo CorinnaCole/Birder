@@ -1,6 +1,6 @@
 -- DROP DATABASE IF EXISTS birder;
 
--- CREATE DATABASE birder;
+CREATE DATABASE birder;
 
 CREATE TABLE
   users (
@@ -67,6 +67,11 @@ ALTER TABLE
 ADD
   CONSTRAINT birds_pkey PRIMARY KEY (bird_id);
 
+ALTER TABLE
+  birds
+ADD
+  CONSTRAINT unique_sci_name UNIQUE (scentific_name);
+
 CREATE TABLE
   bird_user (
     b_u_id serial NOT NULL,
@@ -78,6 +83,9 @@ ALTER TABLE
   bird_user
 ADD
   CONSTRAINT bird_user_pkey PRIMARY KEY (b_u_id);
+
+ALTER TABLE IF EXISTS bird_user
+    ADD CONSTRAINT unique_bird_id_user_id UNIQUE (bird_id, user_id);
 
 CREATE TABLE
   bird_photos (
