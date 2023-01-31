@@ -1,14 +1,3 @@
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable react/jsx-wrap-multilines */
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-param-reassign */
-/* eslint-disable operator-assignment */
-/* eslint-disable comma-dangle */
-/* eslint-disable react/button-has-type */
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/function-component-definition */
 import React, { useState, useEffect } from 'react';
 import BirdBinderEntry from './BirdBinderEntry.jsx';
 import BirdCard from './birdCard.jsx';
@@ -18,7 +7,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const BirdList = ({ userID, friend, back, allBirds }) => {
-  // need some menu or toggle switch to determine card sort
   const [addingBird, setAddingBird] = useState(false);
   const [currUser, setCurrUser] = useState(false);
   const [cardRows, setCardRows] = useState([]);
@@ -30,15 +18,13 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
   const [sort, setSort] = useState(true);
   const history = useHistory();
 
-  // console.log('id', userID);
 
   const getBirdInfo = () => {
     let id = userID;
     if (typeof friend === 'object' && Object.keys(friend).length > 0) {
       id = friend.friend_user_id;
     }
-    // console.log(id, friend);
-    // conditional to check if friend or user
+
     axios.get(`/birdcards/${id}`)
       .then((data) => {
         let copy1 = data.data.slice();
@@ -50,7 +36,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
           if (a.common_name.toUpperCase() < b.common_name.toUpperCase()) {
             return 1;
           }
-          // a must be equal to b
           return 0;
         });
         let sortedRec = copy2.sort(function compareFn(a, b) {
@@ -60,7 +45,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
           if (a.first_seen < b.first_seen) {
             return 1;
           }
-          // a must be equal to b
           return 0;
         });
         setRecBirds(sortedRec);
@@ -95,8 +79,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
 
   const generateCardRows = () => {
     const cardStorage = [];
-    // cardStorage.concat(birds);
-
     for (let i = 0; i < birds.length; i += 2) {
       if (i === birds.length - 1) {
         cardStorage.push([birds[i]]);
@@ -133,7 +115,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
           <br />
           {!currUser && <button onClick={back}>Back to Friend List</button>}
           {currUser && <button onClick={nowAddingBird}>Add Bird Sighting</button>}
-          {/* filter option for alphabetical and something else date scene? */}
           <br />
           <br />
           {sort && <button onClick={sortChange}>Alphabetical</button>}
@@ -155,10 +136,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
               </div>
             );
           })}
-          {/* {[1,1,1].map((bird, i) => {
-        return <BirdBinderEntry key={i} />
-      })} */}
-
           {addingBird && <NewBirdForm close={() => { setAddingBird(); }} allBirds={allBirds} userID={userID} birdCards={birds}
             update={() => { getBirdInfo() }} />}
         </div>
@@ -169,7 +146,3 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
 };
 
 export default BirdList;
-// app.get('/birdCards/:user_id', ((req, res) => {
-//   console.log(req.params);
-//   res.send('hitting sever from get birdcards');
-// }))

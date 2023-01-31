@@ -15,22 +15,6 @@ const Container = styled.div`
   justify-items: center;
 `;
 
-/*
-original:
-const Container = styled.div`
-  display: grid;
-  justify-content: center;
-  align-content: space-evenly;
-  height: 500px;
-  width: 500px;
-  background-color: #686868;
-  border:solid;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px;
-  opacity: .95;
-`;
-*/
-
 const LandingButton = styled.button`
   height: 100px;
   width: 200px;
@@ -41,7 +25,7 @@ const LandingButton = styled.button`
   line-height: 1.5;
   color: #fff;
   height: 48px;
-  border-radius: 9999px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +47,6 @@ const GreetingAndLogo = styled.div`
     color: #32690f
   }
 `
-
 export {
   LandingButton,
   GreetingAndLogo,

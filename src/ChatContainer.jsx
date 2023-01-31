@@ -10,7 +10,6 @@ const ChatContainer = function ({friendSelected, chatMessages, setChatMessages, 
   const [incomingMessages, setIncomingMessages] = useState(null);
 
   const sendMessage = function (msg) {
-      //Have a function that sends the message to the database
       socket.current.emit('send-msg', {
         to: friendSelected.friend_user_id,
         from: userID,
@@ -23,7 +22,6 @@ const ChatContainer = function ({friendSelected, chatMessages, setChatMessages, 
         conversationId: chatId
       })
         .then((response) => {
-          // displayMessages();
           const msgs = [...chatMessages];
           msgs.push({fromSelf: true, message: msg})
           setChatMessages(msgs);

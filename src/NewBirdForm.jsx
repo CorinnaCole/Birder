@@ -1,14 +1,4 @@
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-wrap-multilines */
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/prop-types */
-/* eslint-disable comma-dangle */
-/* eslint-disable object-shorthand */
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/function-component-definition */
+
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -237,16 +227,15 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
 
     console.log('birdInfo >', birdInfo)
     getBirdUrl(selectedImage);
-    // axios.post('/birds', birdInfo)
-    // .then((data) => {
-    // console.log('bird post data: ', data);
-    //   // propably update too
-    //   update();
-    //   close();
-    // })
-    // .catch((err) => {
-    // console.log('error posting bird sighting: ', err);
-    // });
+    axios.post('/birds', birdInfo)
+    .then((data) => {
+    console.log('bird post data: ', data);
+      update();
+      close();
+    })
+    .catch((err) => {
+    console.log('error posting bird sighting: ', err);
+    });
   };
 
   // testing - try using for other values

@@ -1,7 +1,6 @@
 const {getAllMessages, insertMessage} = require('../../database/models/Messages.js');
 
 const getMessages = (req, res) => {
-  // console.log(req.params.chatIdString);
   getAllMessages(req.params.chatIdString)
   .then(data => {
     if (data.rows[0]){
