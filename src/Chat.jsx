@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { io } from 'socket.io-client';
 import styled from 'styled-components';
 import ChatUsers from './ChatUsers.jsx';
 import ChatWelcomeScreen from './ChatWelcomeScreen.jsx';
 import ChatContainer from './ChatContainer.jsx';
-import { useHistory } from 'react-router-dom';
-import { io } from 'socket.io-client';
-import axios from 'axios';
+
 
 function Chat ({clickedFriend, userID, globalUser, back}) {
   const socket = useRef;

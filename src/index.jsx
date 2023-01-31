@@ -84,7 +84,6 @@ const MainComponent = () => {
   const getFriendsList = () => {
     axios.get(`/friendsList/${userID}`)
       .then((data) => {
-        // console.log('friends? ', data);
         setFriendsList(data.data);
       })
       .catch((err) => {

@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import axios from 'axios';

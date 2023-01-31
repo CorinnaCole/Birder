@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -147,7 +146,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
         setAddressOptions([noAddresses]);
         setAddressValReturned(true);
       })
-    // not really sure about the lines below so leaving them for now.
     setZip('');
     setStreet('');
     setState('');
@@ -238,11 +236,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
     });
   };
 
-  // testing - try using for other values
-  // const setFormDetails = (event, key, value) => {
-  //   form[key] = value;
-  //   setForm(form)
-  // }
   return (
     <ModalBackground>
       <ModalContainer>
@@ -295,7 +288,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
           <button className="bird-left" onClick={typeAddressIn} type="button">fill out location or zip</button>
           {typeAddress && (
             <div>
-              {/* address form to get here once I have better idea of how many states */}
               <label>zip code</label>
               <input type="text" placeholder="ex. 12345" onChange={onZip} />
               <br />
@@ -334,7 +326,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
           <label>Select a Photo of the Bird Seen!</label>
           <input type="file" onChange={handleFileChange} />
           <br />
-          {/*use birdURL and setBirdURL to store url in state, once set i'd check with Andy for what all needs to happen along the req chain starting with variable passed from here*/}
           <br />
           {(!waiting) && <button type="submit" onClick={submitForm}>Submit</button>}
           {waiting && <div>Waiting on Location Grab</div>}

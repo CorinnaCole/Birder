@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable react/function-component-definition */
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';

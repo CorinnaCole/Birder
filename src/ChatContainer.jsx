@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
-import styled from 'styled-components';
-import ChatInputField from './ChatInputField.jsx';
-import { v4 as uuidv4} from 'uuid';
 import axios from 'axios';
+import styled from 'styled-components';
+import { v4 as uuidv4} from 'uuid';
+import ChatInputField from './ChatInputField.jsx';
+
+
 
 const ChatContainer = function ({friendSelected, chatMessages, setChatMessages, globalUser, userID, displayMessages, chatId, socket}) {
   const scrollRef = useRef();

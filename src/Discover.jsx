@@ -1,7 +1,7 @@
-/* eslint-disable react/function-component-definition */
 import React, {useState, useEffect} from 'react';
-import './assets/FriendList.css';
 import { useHistory } from 'react-router-dom';
+import './assets/FriendList.css';
+
 
 const Discover = ({allBirds}) => {
   const history = useHistory();
@@ -11,7 +11,6 @@ const Discover = ({allBirds}) => {
     if (Array.isArray(allBirds)) {
       const sorted = allBirds.filter((bird) => {return bird.summary})
       console.log(sorted[Math.floor(Math.random() * sorted.length)])
-      // console.log(sorted);
       setSumBird(sorted[Math.floor(Math.random() * sorted.length)]);
     }
 

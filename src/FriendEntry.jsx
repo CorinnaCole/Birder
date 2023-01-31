@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-curly-brace-presence */
-/* eslint-disable react/button-has-type */
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/function-component-definition */
 import React from 'react';
 import styled from 'styled-components';
 import './assets/FriendList.css';

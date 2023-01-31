@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSmile, faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+
 
 
 const ChatInputField = function ({friendSelected, globalUser, userID, chatMessages, displayMessages, chatId, socket, sendMessage, message, setMessage}) {
