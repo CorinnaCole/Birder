@@ -1,23 +1,23 @@
-/* eslint-disable react/function-component-definition */
-/* eslint-disable import/extensions */
-// Bring React in to build a component.
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ReactDOM, { createRoot } from 'react-dom/client';
 import {
-  BrowserRouter as Router, Route, Switch, useHistory,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
 } from 'react-router-dom';
-import { Icon } from '@iconify/react';
-import { useAuth0 } from '@auth0/auth0-react';
-import Auth0ProviderWithHistory from './login/auth0-provider-with-history.jsx';
+import axios from 'axios';
+import './assets/index.css';
+import App from './App.jsx';
 import AccountPage from './login/AccountPage.jsx';
 import UserSignUp from './login/UserSignUp.jsx';
 import BirdList from './BirdList.jsx';
 import FriendsList from './FriendsList.jsx';
 import Discover from './Discover.jsx';
-// Import from react-dom the ability to create a root render
-import App from './App.jsx';
-import './assets/index.css';
+import { useAuth0 } from '@auth0/auth0-react';
+import Auth0ProviderWithHistory from './login/auth0-provider-with-history.jsx';
+import { Icon } from '@iconify/react';
+
 
 const MainComponent = () => {
   const [globalUser, setGlobalUser] = useState({});
