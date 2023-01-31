@@ -1,8 +1,6 @@
 const { pool } = require('../db.js');
 
 const getAllMessages = (users_hash) => {
-  // users_hash = users_hash.split('&');
-  // console.log(users_hash);
   return pool.query(`
   with tryInsert AS (
 	  INSERT INTO conversations (users_hash)

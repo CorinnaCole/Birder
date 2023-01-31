@@ -33,7 +33,6 @@ app.get("/testing", (request, response) => {
 });
 
 app.post("/image-upload", (request, response) => {
-  console.log(response.body)
   const data = {
     image: request.body.image,
   };
