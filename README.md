@@ -83,14 +83,37 @@ The user has the option of "Discovering a Bird" which will take them to a page w
 
 **<h2>Database:</h2>**
 The database is designed as follows:
-![db diagram](./database/ETL/db_visual.png)
+![db diagram](./database/docs/db_visual.png)
 
 The following diagram demonstrates the relationships between the tables. Note that some of the column names have been updated since this diagram was generated, although the underlying structure remains the same:
 
-![db relationships](./database/ETL/database_relations.png)
+![db relationships](./database/docs/database_relations.png)
 
 
 **<h2> How to start and run the app: </h2>**
+Installation
+* npm install
+* npm run start for webpack
+* npm run server for server
+* current dependencies inlcude
+
+<p>"@babel/core": "^7.20.2"</p>
+<p>"@babel/preset-env": "^7.20.2"</p>
+<p>"@babel/preset-react": "^7.18.6"</p>
+<p>"babel-loader": "^9.1.0"</p>
+<p>"body-parser": "^1.20.1"</p>
+<p>"cors": "^2.8.5"</p>
+<p>"css-loader": "^6.7.2"</p>
+<p>"dotenv": "^16.0.3"</p>
+<p>"express": "^4.18.2"</p>
+<p>"nodemon": "^2.0.20"</p>
+<p>"react": "^18.2.0"</p>
+<p>"react-dom": "^18.2.0"</p>
+<p>"style-loader": "^3.3.1"</p>
+<p>"webpack": "^5.75.0"</p>
+<p>"webpack-cli": "^5.0.0"</p>
+<p>"webpack-dev-server": "^4.11.1"</p>
+
 
 **<h2> Issues and To Dos: </h2>**
 Below is a list of known issues with the app and proposed fixes and/or yet-to-be-built functionalities:
@@ -107,6 +130,6 @@ Below is a list of known issues with the app and proposed fixes and/or yet-to-be
     * There should be an 'add a friend' button, rather than pressing enter
 5. Chat functionality is currently nonfunctional due to missing column 'users_hash'
 6. 'Discover a Bird' would be enhanced by the addition of more unique bird information, including perhaps a recording of the bird's call. This funcitonality was investigated and found possible to impliment utilizing the xenocanto api, but was not included due to time constraints.
-7. Identifying a bird based on its common name is a particular challenge. I was unable to find a bird-specific database accessible via an API that would reliably facilitate that search. THe best bird identification APIs were in fact based on a bird's call, which apparently have very unique and identifiable tones and rhythms. As a result, I researched taxonomic databases extensively. While I found one based out of the Europe that allowed me to filter results by the bird class, 'aves', the differences in the common names of birds across cultures did not reliably identify birds, particularly North American species which were outside the focus or the taxonomic organization. Finally, I chose the ITIS which is backed by the US Geological Society and the Smithsonian Institution. Unfortunately, the API search for a species by common name cannot be constrained to the class 'aves'. In other words, entering 'crow' may return a 'CROWn starfish'. In order to prevent this from happening, this app would greatly benefit from a pre-seeded list of common North American birds.
+7. Identifying a bird based on its common name is a particular challenge. I was unable to find a bird-specific database accessible via an API that would reliably facilitate that search. THe best bird identification APIs were in fact based on a bird's call, which apparently have very unique and identifiable tones and rhythms. As a result, I researched taxonomic databases extensively. While I found one based out of the Europe that allowed me to filter results by the bird class, 'aves', the differences in the common names of birds across cultures did not reliably identify birds, particularly North American species which were outside the focus of the taxonomic organization. Finally, I chose the ITIS which is backed by the US Geological Society and the Smithsonian Institution. Unfortunately, the API search for a species by common name cannot be constrained to the class 'aves'. In other words, entering 'crow' may return a 'CROWn starfish'. In order to prevent this from happening, this app would greatly benefit from a pre-seeded list of common North American birds.
 
 
