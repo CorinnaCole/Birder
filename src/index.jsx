@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import './assets/index.css';
+import Header from './SharedComponents/Header.jsx';
 import App from './App.jsx';
 import AccountPage from './login/AccountPage.jsx';
 import UserSignUp from './login/UserSignUp.jsx';
@@ -104,6 +105,7 @@ const MainComponent = () => {
 
   return (
     <Router>
+      <Header/>
       <Auth0ProviderWithHistory>
         <Switch>
           <Route exact path="/">
