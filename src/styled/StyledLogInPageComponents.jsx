@@ -6,16 +6,18 @@ const Container = styled.div`
   box-sizing: border-box;
   display: grid;
   justify-content: center;
+  justify-items: center;
   align-content: space-evenly;
   height: 500px;
   width: 500px;
+  margin-top: 45%;
   background-color: white;
   border-radius: 25px;
   padding: 26px;
-  justify-items: center;
 `;
 
 const LandingButton = styled.button`
+  display: flex;
   height: 100px;
   width: 200px;
   background-color: #6497ef;
@@ -25,8 +27,7 @@ const LandingButton = styled.button`
   line-height: 1.5;
   color: #fff;
   height: 48px;
-  border-radius: 50%;
-  display: flex;
+  border-radius: 9999px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
