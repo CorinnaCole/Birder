@@ -83,11 +83,11 @@ The user has the option of "Discovering a Bird" which will take them to a page w
 
 **<h2>Database:</h2>**
 The database is designed as follows:
-![db diagram](./database/ETL/db_visual.png)
+![db diagram](./database/docs/db_visual.png)
 
 The following diagram demonstrates the relationships between the tables. Note that some of the column names have been updated since this diagram was generated, although the underlying structure remains the same:
 
-![db relationships](./database/ETL/database_relations.png)
+![db relationships](./database/docs/database_relations.png)
 
 
 **<h2> How to start and run the app: </h2>**
