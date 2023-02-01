@@ -7,7 +7,7 @@ import Card from '@mui/material/Card';
 // import Typography from '@mui/material/Typography';
 import birdphotos from './planz.jsx';
 
-const BirdBinderEntry = ({bird, clicked}) => {
+const BirdCard = ({bird, clicked}) => {
   const locations = ['The Park', 'Work', 'Friends House', 'The Bus Stop', 'The River', 'The Beach', 'The Lake House', 'The Cabbin in the Woods'];
   return (
     <div className="binder-entry" onClick={() => { clicked(bird); }}>
@@ -25,7 +25,7 @@ const BirdBinderEntry = ({bird, clicked}) => {
   );
 };
 
-export default BirdBinderEntry;
+export default BirdCard;
 /* <Card onClick={() => { clicked(bird); }} sx={{ maxWidth: 345 }}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

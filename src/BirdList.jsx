@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './assets/BirdList.css';
-import BirdBinderEntry from './BirdBinderEntry.jsx';
+import BirdCard from './BirdCard.jsx';
 import BirdDetail from './BirdDetail.jsx';
 import NewBirdForm from './NewBirdForm.jsx';
 
@@ -127,14 +127,14 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
             if (row[1]) {
               return (
                 <div key={i} className="full-card-row">
-                  <BirdBinderEntry clicked={(bird) => { cardClicked(bird); }} bird={row[0]} />
-                  <BirdBinderEntry clicked={(bird) => { cardClicked(bird); }} bird={row[1]} />
+                  <BirdCard clicked={(bird) => { cardClicked(bird); }} bird={row[0]} />
+                  <BirdCard clicked={(bird) => { cardClicked(bird); }} bird={row[1]} />
                 </div>
               );
             }
             return (
               <div key={i} className="half-card-row">
-                <BirdBinderEntry clicked={(bird) => { cardClicked(bird); }} bird={row[0]} />
+                <BirdCard clicked={(bird) => { cardClicked(bird); }} bird={row[0]} />
               </div>
             );
           })}
@@ -142,7 +142,7 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
             update={() => { getBirdInfo() }} />}
         </div>
       )}
-      {cardView && <BirdCard bird={cardsBird} back={() => { cardClicked() }} userID={userID} />}
+      {cardView && <BirdDetail bird={cardsBird} back={() => { cardClicked() }} userID={userID} />}
     </div>
   );
 };

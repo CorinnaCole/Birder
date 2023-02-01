@@ -1,7 +1,6 @@
-/* eslint-disable react/function-component-definition */
 import React, { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
 import styled, { css } from 'styled-components';
+import Card from '@mui/material/Card';
 import ReactCardFlip from 'react-card-flip';
 import Map from './Map.jsx';
 import birdphotos from './planz.jsx';
@@ -80,7 +79,7 @@ const Container = styled.div`
   `;
 
 
-const BirdCard = ({bird, back}) => {
+const BirdDetail = ({bird, back}) => {
   const [flip, setFlip] = useState(false);
 
   useEffect(()=>{
@@ -135,4 +134,4 @@ const BirdCard = ({bird, back}) => {
  </div>
   );
 };
-export default BirdCard;
+export default BirdDetail;
