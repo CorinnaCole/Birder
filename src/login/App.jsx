@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './assets/App.css';
+import '../assets/App.css';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { BrowserRouter as Router } from 'react-router-dom';

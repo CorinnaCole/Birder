@@ -5,6 +5,10 @@ import './assets/BirdList.css';
 import BirdCard from './BirdCard.jsx';
 import BirdDetail from './BirdDetail.jsx';
 import NewBirdForm from './NewBirdForm.jsx';
+import {
+  BirdPageDiv,
+  AddBirdButton
+} from './styled/StyledBirdComponents.jsx';
 
 
 
@@ -108,7 +112,8 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
   }, [birds]);
 
   return (
-    <div>
+    <BirdPageDiv>
+      {currUser && <AddBirdButton onClick={nowAddingBird}>Add Bird Sighting</AddBirdButton>}
       {!cardView && (
         <div>
           <h1>Bird Collection</h1>
@@ -116,7 +121,7 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
           <br />
           <br />
           {!currUser && <button onClick={back}>Back to Friend List</button>}
-          {currUser && <button onClick={nowAddingBird}>Add Bird Sighting</button>}
+
           <br />
           <br />
           {sort && <button onClick={sortChange}>Alphabetical</button>}
@@ -143,7 +148,7 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
         </div>
       )}
       {cardView && <BirdDetail bird={cardsBird} back={() => { cardClicked() }} userID={userID} />}
-    </div>
+    </BirdPageDiv>
   );
 };
 

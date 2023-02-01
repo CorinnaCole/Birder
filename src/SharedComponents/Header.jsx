@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import {NavBar} from '../styled/StyledNavComponents.jsx';
+import {FaKiwiBird } from 'react-icons/fa'
+import {
+  NavBar,
+  NavBarWrapper,
+  LogoBox,
+  NavBarList,
+  NavLink,
+  HeroDiv} from '../styled/StyledNavComponents.jsx';
 
 
 const Header = ()=> {
   return (
+    <>
     <NavBar>
-      Here is the NavBar
+      <NavBarWrapper>
+        <LogoBox>
+          <FaKiwiBird/>
+        </LogoBox>
+        <NavBarList>
+          <NavLink> Account  </NavLink>
+          <NavLink> Community </NavLink>
+          <NavLink> Discover </NavLink>
+          <NavLink> Logout </NavLink>
+        </NavBarList>
+      </NavBarWrapper>
     </NavBar>
+    <HeroDiv />
+    </>
   )
 };
 
