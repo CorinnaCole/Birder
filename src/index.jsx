@@ -106,6 +106,13 @@ const MainComponent = () => {
     <Router>
       <Auth0ProviderWithHistory>
         <Switch>
+          <Route exact path="/">
+            <App
+              globalUser={globalUser}
+              setGlobalUser={setGlobalUser}
+              userID={userID}
+              setUserID={setUserID} />
+          </Route>
           <Route
             path="/user">
             {' '}
@@ -117,14 +124,6 @@ const MainComponent = () => {
           <Route path="/createUser">
             <UserSignUp
               globalUser={globalUser} />
-          </Route>
-          <Route exact path="/">
-            <App
-              globalUser={globalUser}
-              setGlobalUser={setGlobalUser}
-              userID={userID}
-              setUserID={setUserID} />
-            {' '}
           </Route>
 
           <Route

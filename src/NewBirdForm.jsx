@@ -223,11 +223,9 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
       // photo: birdURL
     };
 
-    console.log('birdInfo >', birdInfo)
     getBirdUrl(selectedImage);
     axios.post('/birds', birdInfo)
     .then((data) => {
-    console.log('bird post data: ', data);
       update();
       close();
     })
