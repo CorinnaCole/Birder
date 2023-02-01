@@ -3,8 +3,8 @@ import './assets/App.css';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import LogInPage from './login/LogInPage.jsx';
-import ImageUpload from './imageUpload/ImageUpload.jsx'
+import LogInPage from './LogInPage.jsx';
+import ImageUpload from '../imageUpload/ImageUpload.jsx'
 
 const App = ({ globalUser, setGlobalUser }) => (
   <>

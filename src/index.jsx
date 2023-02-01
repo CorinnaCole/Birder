@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 import './assets/index.css';
 import Header from './SharedComponents/Header.jsx';
-import App from './App.jsx';
+import App from './login/App.jsx';
 import AccountPage from './login/AccountPage.jsx';
 import UserSignUp from './login/UserSignUp.jsx';
 import BirdList from './BirdList.jsx';
