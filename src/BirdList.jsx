@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './assets/BirdList.css';
 import BirdBinderEntry from './BirdBinderEntry.jsx';
-import BirdCard from './birdCard.jsx';
+import BirdDetail from './BirdDetail.jsx';
 import NewBirdForm from './NewBirdForm.jsx';
+
 
 
 const BirdList = ({ userID, friend, back, allBirds }) => {
