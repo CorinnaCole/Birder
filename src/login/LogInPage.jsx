@@ -58,7 +58,7 @@ const GreetingAndLogo = styled.div`
   }
 `
 
-const Landing = ({ setGlobalUser, globalUser }) => {
+const LogInPage = ({ setGlobalUser, globalUser }) => {
   const [addUserToggle, setAddUserToggle] = useState(false);
   const history = useHistory();
   const audio = new Audio(chirp);
@@ -137,4 +137,4 @@ const Landing = ({ setGlobalUser, globalUser }) => {
   );
 };
 
-export default Landing;
+export default LogInPage;

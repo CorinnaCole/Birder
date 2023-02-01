@@ -3,7 +3,7 @@ import './assets/App.css';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Landing from './login/Landing.jsx';
+import LogInPage from './login/LogInPage.jsx';
 import ImageUpload from './imageUpload/ImageUpload.jsx'
 
 const App = ({ globalUser, setGlobalUser }) => (
@@ -12,7 +12,7 @@ const App = ({ globalUser, setGlobalUser }) => (
       <source src={require('./assets/ducksVideo.mp4').default} type="video/mp4" />
     </video>
 
-    <Landing
+    <LogInPage
       globalUser={globalUser}
       setGlobalUser={setGlobalUser} />
   </>
