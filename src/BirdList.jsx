@@ -116,10 +116,7 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
       {currUser && <AddBirdButton onClick={nowAddingBird}>Add Bird Sighting</AddBirdButton>}
       {!cardView && (
         <div>
-          <h1>Bird Collection</h1>
-          <button onClick={() => { history.push('/user') }}>Return Home</button>
-          <br />
-          <br />
+
           {!currUser && <button onClick={back}>Back to Friend List</button>}
 
           <br />
@@ -128,6 +125,7 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
           {!sort && <button onClick={sortChange}>Most Recent</button>}
           <br />
           <br />
+          <h3>Your Birds:</h3>
           {(cardRows.length > 0) && cardRows.map((row, i) => {
             if (row[1]) {
               return (

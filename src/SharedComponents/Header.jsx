@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import {FaKiwiBird } from 'react-icons/fa'
 import {
   NavBar,
@@ -10,19 +11,24 @@ import {
   HeroDiv} from '../styled/StyledNavComponents.jsx';
 
 
-const Header = ()=> {
+const Header = ({ globalUser })=> {
+  const history = useHistory();
+  const { logout, user } = useAuth0();
+  const logoutWithRedirect = () => logout({
+    returnTo: window.location.origin,
+  });
   return (
     <>
     <NavBar>
       <NavBarWrapper>
         <LogoBox>
-          <FaKiwiBird/>
+          <FaKiwiBird  onClick={() => history.push('/birdList')}/>
         </LogoBox>
         <NavBarList>
-          <NavLink> Account  </NavLink>
-          <NavLink> Community </NavLink>
-          <NavLink> Discover </NavLink>
-          <NavLink> Logout </NavLink>
+          <NavLink onClick={()=> history.push('/user')}> Account</NavLink>
+          <NavLink onClick={() => history.push('/friendsList')}> Community </NavLink>
+          <NavLink onClick={() => history.push('/discover')}> Discover </NavLink>
+          <NavLink  onClick={() => logoutWithRedirect()}> Logout </NavLink>
         </NavBarList>
       </NavBarWrapper>
     </NavBar>
@@ -32,3 +38,4 @@ const Header = ()=> {
 };
 
 export default Header;
+

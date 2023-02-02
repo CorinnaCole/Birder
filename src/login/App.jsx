@@ -9,7 +9,7 @@ import ImageUpload from '../imageUpload/ImageUpload.jsx'
 const App = ({ globalUser, setGlobalUser }) => (
   <>
     <video autoPlay loop muted id="video">
-      <source src={require('./assets/ducksVideo.mp4').default} type="video/mp4" />
+      <source src={require('../assets/ducksVideo.mp4').default} type="video/mp4" />
     </video>
 
     <LogInPage
