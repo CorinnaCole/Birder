@@ -11,12 +11,18 @@ import {
   HeroDiv} from '../styled/StyledNavComponents.jsx';
 
 
-const Header = ({ globalUser })=> {
+const Header = ({ globalUser, setGlobalUser, userID, setUserID })=> {
   const history = useHistory();
   const { logout, user } = useAuth0();
   const logoutWithRedirect = () => logout({
     returnTo: window.location.origin,
   });
+
+  const handleLogOut = () => {
+    setUserID(0);
+    setGlobalUser({});
+    logoutWithRedirect();
+  }
   return (
     <>
     <NavBar>
@@ -28,7 +34,7 @@ const Header = ({ globalUser })=> {
           <NavLink onClick={()=> history.push('/user')}> Account</NavLink>
           <NavLink onClick={() => history.push('/friendsList')}> Community </NavLink>
           <NavLink onClick={() => history.push('/discover')}> Discover </NavLink>
-          <NavLink  onClick={() => logoutWithRedirect()}> Logout </NavLink>
+          <NavLink  onClick={handleLogOut}> Logout </NavLink>
         </NavBarList>
       </NavBarWrapper>
     </NavBar>

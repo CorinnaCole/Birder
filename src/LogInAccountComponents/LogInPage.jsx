@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 import AccountPage from './AccountPage.jsx';
 import { FaGoogle, FaKiwiBird } from 'react-icons/fa';
 import UserSignUp from './UserSignUp.jsx';
-import chirp from '../assets/birds-chirping-04-6771.mp3';
 import {Container, LandingButton, GreetingAndLogo} from '../styled/StyledLogInPageComponents.jsx';
 
 

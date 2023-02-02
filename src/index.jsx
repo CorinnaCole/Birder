@@ -107,7 +107,12 @@ const MainComponent = () => {
   return (
     <Router>
       <Auth0ProviderWithHistory>
-      <Header globalUser={globalUser} />
+     {userID >0 && <Header
+        globalUser={globalUser}
+        setGlobalUser={setGlobalUser}
+        userID={userID}
+        setUserID={setUserID}
+        />}
         <Switch>
           <Route exact path="/">
             <App
