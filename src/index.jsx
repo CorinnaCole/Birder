@@ -6,17 +6,18 @@ import {
   Switch,
   useHistory,
 } from 'react-router-dom';
+
 import axios from 'axios';
 import './assets/index.css';
 import Header from './SharedComponents/Header.jsx';
-import App from './login/App.jsx';
-import AccountPage from './login/AccountPage.jsx';
-import UserSignUp from './login/UserSignUp.jsx';
-import BirdList from './BirdList.jsx';
-import FriendsList from './FriendsList.jsx';
+import App from './LogInAccountComponents/App.jsx';
+import AccountPage from './LogInAccountComponents/AccountPage.jsx';
+import UserSignUp from './LogInAccountComponents/UserSignUp.jsx';
+import BirdList from './BirdsPage/BirdList.jsx';
+import FriendsList from './FriendComponents/FriendsList.jsx';
 import Discover from './Discover.jsx';
 import { useAuth0 } from '@auth0/auth0-react';
-import Auth0ProviderWithHistory from './login/auth0-provider-with-history.jsx';
+import Auth0ProviderWithHistory from './LogInAccountComponents/auth0-provider-with-history.jsx';
 import { Icon } from '@iconify/react';
 
 

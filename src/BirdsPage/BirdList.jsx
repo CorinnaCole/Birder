@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './assets/BirdList.css';
+import '../assets/BirdList.css';
 import BirdCard from './BirdCard.jsx';
 import BirdDetail from './BirdDetail.jsx';
 import NewBirdForm from './NewBirdForm.jsx';
 import {
   BirdPageDiv,
   AddBirdButton
-} from './styled/StyledBirdComponents.jsx';
+} from '../styled/StyledBirdComponents.jsx';
 
 
 

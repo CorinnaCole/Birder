@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './assets/FriendList.css';
+import '../assets/FriendList.css';
 import FriendEntry from './FriendEntry.jsx';
-import BirdList from './BirdList.jsx';
-import Chat from './Chat.jsx';
+import BirdList from '../BirdsPage/BirdList.jsx';
+import Chat from '../ChatComponents/Chat.jsx';
 
 const FriendsList = ({userID, allUsers, friendsList, updateFriends, globalUser}) => {
   const [friendSearch, setFriendSearch] = useState('');
