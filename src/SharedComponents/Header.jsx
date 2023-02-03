@@ -8,7 +8,8 @@ import {
   LogoBox,
   NavBarList,
   NavLink,
-  HeroDiv} from '../styled/StyledNavComponents.jsx';
+  HeroDiv
+} from '../styled/StyledNavComponents.jsx';
 
 
 const Header = ({ globalUser, setGlobalUser, userID, setUserID })=> {
@@ -28,7 +29,7 @@ const Header = ({ globalUser, setGlobalUser, userID, setUserID })=> {
     <NavBar>
       <NavBarWrapper>
         <LogoBox>
-          <FaKiwiBird  onClick={() => history.push('/birdList')}/>
+          <FaKiwiBird className="needs-pointer"  onClick={() => history.push('/birdList')}/>
         </LogoBox>
         <NavBarList>
           <NavLink onClick={()=> history.push('/user')}> Account</NavLink>

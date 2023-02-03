@@ -17,7 +17,7 @@ const SectionCard = styled.aside`
     background-blend-mode: screen;
   `;
 
-  const SectionCard2 = styled.aside`
+const SectionCard2 = styled.aside`
     border: 4mm ridge #213547;
     padding: 2rem;
     background:
@@ -68,7 +68,7 @@ const Container = styled.div`
   margin-top: 20vh;
   `;
 
-  const Container2 = styled.div`
+const Container2 = styled.div`
   box-shadow: 10px 10px 10px #213547;;
   border-radius: 20px;
   border: 10px solid #686868;
@@ -79,59 +79,54 @@ const Container = styled.div`
   `;
 
 
-const BirdDetail = ({bird, back}) => {
+const BirdDetail = ({ bird, back }) => {
   const [flip, setFlip] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(bird, 'here is the bird');
 
   }, [])
 
   return (
     <div>
-    <ReactCardFlip
-      isFlipped={flip}
-      flipDirection="vertical"
-    >
-      <Container>
-        <SectionCard onClick={() => setFlip(!flip)}>
-          <aside>
-            <h3>{bird.scentific_name}</h3>
-            <h3>AKA: {bird.common_name}</h3>
-            <SectionImage
-              src={birdphotos[bird.bird_id - 1] || bird.bird_photos[0]}
-              alt="header image"
-              height="400"
-              width="384"
-            />
-            <div>First Seen: {bird.first_seen}</div>
-            <div>Last Seen: {bird.last_seen}</div>
-            <div>Times seen: {bird.count}</div>
-            <h3>Decription</h3>
-            <Decription>
-            {bird.summary}
-            </Decription>
-            <h3>Personal Notes</h3>
-            <Decription>{bird.sighting_notes[0]}</Decription>
-          </aside>
-        </SectionCard>
-      </Container>
-      <Container2>
-        <SectionCard2>
-          <aside>
-            <h3  onClick={() => setFlip(!flip)}>Sighting Locations</h3>
-            <Map birdArrayLocations={bird.bird_location} />
-          </aside>
-        </SectionCard2>
+        <Container>
+          <SectionCard onClick={() => setFlip(!flip)}>
+            <aside>
+              <h3>{bird.scentific_name}</h3>
+              <h3>AKA: {bird.common_name}</h3>
+              <SectionImage
+                src={birdphotos[bird.bird_id - 1] || bird.bird_photos[0]}
+                alt="header image"
+                height="400"
+                width="384"
+              />
+              <div>First Seen: {bird.first_seen}</div>
+              <div>Last Seen: {bird.last_seen}</div>
+              <div>Times seen: {bird.count}</div>
+              <h3>Decription</h3>
+              <Decription>
+                {bird.summary}
+              </Decription>
+              <h3>Personal Notes</h3>
+              <Decription>{bird.sighting_notes[0]}</Decription>
+            </aside>
+          </SectionCard>
+        </Container>
+        <Container2>
+          <SectionCard2>
+            <aside>
+              <h3 onClick={() => setFlip(!flip)}>Sighting Locations</h3>
+              <Map birdArrayLocations={bird.bird_location} />
+            </aside>
+          </SectionCard2>
 
-      </Container2>
-
-    </ReactCardFlip>
- <div>
-  <button onClick={()=>{
-    back()}} style={{marginTop: 50}}>back</button>
+        </Container2>
+      <div>
+        <button onClick={() => {
+          back()
+        }} style={{ marginTop: 50 }}>back</button>
+      </div>
     </div>
- </div>
   );
 };
 export default BirdDetail;

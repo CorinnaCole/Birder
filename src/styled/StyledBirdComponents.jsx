@@ -5,7 +5,7 @@ const BirdPageDiv = styled.div`
   position: relative;
   flex-direction: column;
   top: 280px;
-  width: 100%;
+  max-width: 1570px;
   padding: 15px;
 `;
 
@@ -14,28 +14,26 @@ const CardHolderDiv = styled.div`
   width: 100%;
   height: auto;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 15px;
 `;
 
 const AddBirdButton = styled.button`
   position: relative;
-  top: -20px;
-  left: 50%;
-  width: 200px;
-  height: 48px;
+  top: -3%;
+  width: 250px;
+  margin: auto;
   border: 1px solid #D7942E;
   background-color: #953553;
   font-family: Manrope,Arial,sans-serif;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 3em;
   color: #fff;
   border-radius: 9999px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-size: 24px;
-  background-position: 16px;
   padding: 0 12px;
 `;
 
@@ -51,7 +49,9 @@ const ImgDiv = styled.div`
 `
 
 const HeaderDiv = styled.div`
-
+height: auto;
+padding-left: 40px;
+line-height: 1em;
 
 `;
 
@@ -60,5 +60,6 @@ export {
   AddBirdButton,
   CardHolderDiv,
   CardDiv,
-  ImgDiv
+  ImgDiv,
+  HeaderDiv
 }

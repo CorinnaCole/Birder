@@ -8,7 +8,8 @@ import NewBirdForm from './NewBirdForm.jsx';
 import {
   BirdPageDiv,
   AddBirdButton,
-  CardHolderDiv
+  CardHolderDiv,
+  HeaderDiv
 } from '../styled/StyledBirdComponents.jsx';
 
 
@@ -93,11 +94,12 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
   return (
     <BirdPageDiv>
       {currUser && <AddBirdButton onClick={nowAddingBird}>Add Bird Sighting</AddBirdButton>}
-      <h3>Your Birds: </h3>
-      <h4>Sort by: &nbsp;
-      {sort && <a onClick={sortChange}>Alphabetical</a> }
-        {!sort && <a onClick={sortChange}>Most Recent</a>}
-      </h4>
+      <HeaderDiv>
+        <h4>Sort by: &nbsp;
+          {sort && <a className="needs-pointer" onClick={sortChange}>Alphabetical</a>}
+          {!sort && <a className="needs-pointer" onClick={sortChange}>Most Recent</a>}
+        </h4>
+      </HeaderDiv>
       {!cardView && (
         <CardHolderDiv>
           {
