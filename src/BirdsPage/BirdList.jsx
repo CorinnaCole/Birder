@@ -93,17 +93,17 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
   return (
     <BirdPageDiv>
       {currUser && <AddBirdButton onClick={nowAddingBird}>Add Bird Sighting</AddBirdButton>}
-      <br />
-      {sort && <button onClick={sortChange}>Alphabetical</button>}
-      {!sort && <button onClick={sortChange}>Most Recent</button>}
-      <br />
-      <h3>Your Birds:</h3>
+      <h3>Your Birds: </h3>
+      <h4>Sort by: &nbsp;
+      {sort && <a onClick={sortChange}>Alphabetical</a> }
+        {!sort && <a onClick={sortChange}>Most Recent</a>}
+      </h4>
       {!cardView && (
         <CardHolderDiv>
           {
             (birds.length > 0) && birds.map((bird, i) => {
               return (
-                <BirdCard key={i} clicked={(bird) => { cardClicked(bird); }} bird={birds[i]} />
+                <BirdCard key={`${bird.common_name}${i}`} clicked={(bird) => { cardClicked(bird); }} bird={birds[i]} />
               )
             })
           }
