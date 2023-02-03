@@ -160,7 +160,6 @@ const NewBirdForm = ({ close, allBirds, userID, birdCards, update }) => {
 
   const handleTypingBirdName = (event, newInputValue) => {
     if (newInputValue !== "undefined") {
-      console.log('cj', newInputValue)
       setTypedBirdName(newInputValue);
     }
   }

@@ -3,7 +3,7 @@ import beeEatersImg from '../assets/bee-eaters.jpeg';
 
 const NavBar = styled.nav`
   box-sizing: border-box;
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 60px;
   line-height: 60px;
@@ -67,7 +67,7 @@ const HeroDiv =styled.div`
   background-size: 100%;
   background-position: 0% 20%;
   box-sizing: border-box;
-  position: fixed;
+  position: absolute;
   top: 60px;
   height: 220px;
   width: 100%;

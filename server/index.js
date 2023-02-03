@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const util = require('node:util');
-// image upload
+
 let cloudinary = require('cloudinary').v2;
 require('body-parser');
 const socket = require('socket.io');

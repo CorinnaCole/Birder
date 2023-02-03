@@ -7,7 +7,8 @@ import BirdDetail from './BirdDetail.jsx';
 import NewBirdForm from './NewBirdForm.jsx';
 import {
   BirdPageDiv,
-  AddBirdButton
+  AddBirdButton,
+  CardHolderDiv
 } from '../styled/StyledBirdComponents.jsx';
 
 
@@ -72,9 +73,6 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
 
   const nowAddingBird = () => {
     setAddingBird(!addingBird);
-    console.log('all birds: ', allBirds);
-    console.log('user: ', userID);
-    console.log('birds: ', birds);
   };
 
   const cardClicked = (card) => {
@@ -83,68 +81,36 @@ const BirdList = ({ userID, friend, back, allBirds }) => {
     setCardView(!cardView);
   };
 
-  const generateCardRows = () => {
-    const cardStorage = [];
-    for (let i = 0; i < birds.length; i += 2) {
-      if (i === birds.length - 1) {
-        cardStorage.push([birds[i]]);
-      } else {
-        cardStorage.push([birds[i], birds[i + 1]]);
-      }
-    }
-    setCardRows(cardStorage);
-  };
-
   const sortChange = () => {
     setSort(!sort);
-
     if (sort) {
       setBirds(alpBirds);
     } else {
       setBirds(recBirds);
     }
-
   };
-
-  useEffect(() => {
-    generateCardRows();
-    console.log('bird card data: ', birds);
-  }, [birds]);
 
   return (
     <BirdPageDiv>
       {currUser && <AddBirdButton onClick={nowAddingBird}>Add Bird Sighting</AddBirdButton>}
+      <br />
+      {sort && <button onClick={sortChange}>Alphabetical</button>}
+      {!sort && <button onClick={sortChange}>Most Recent</button>}
+      <br />
+      <h3>Your Birds:</h3>
       {!cardView && (
-        <div>
-
-          {!currUser && <button onClick={back}>Back to Friend List</button>}
-
-          <br />
-          <br />
-          {sort && <button onClick={sortChange}>Alphabetical</button>}
-          {!sort && <button onClick={sortChange}>Most Recent</button>}
-          <br />
-          <br />
-          <h3>Your Birds:</h3>
-          {(cardRows.length > 0) && cardRows.map((row, i) => {
-            if (row[1]) {
+        <CardHolderDiv>
+          {
+            (birds.length > 0) && birds.map((bird, i) => {
               return (
-                <div key={i} className="full-card-row">
-                  <BirdCard clicked={(bird) => { cardClicked(bird); }} bird={row[0]} />
-                  <BirdCard clicked={(bird) => { cardClicked(bird); }} bird={row[1]} />
-                </div>
-              );
-            }
-            return (
-              <div key={i} className="half-card-row">
-                <BirdCard clicked={(bird) => { cardClicked(bird); }} bird={row[0]} />
-              </div>
-            );
-          })}
-          {addingBird && <NewBirdForm close={() => { setAddingBird(); }} allBirds={allBirds} userID={userID} birdCards={birds}
-            update={() => { getBirdInfo() }} />}
-        </div>
-      )}
+                <BirdCard key={i} clicked={(bird) => { cardClicked(bird); }} bird={birds[i]} />
+              )
+            })
+          }
+        </CardHolderDiv>)
+      }
+      {addingBird && <NewBirdForm close={() => { setAddingBird(); }} allBirds={allBirds} userID={userID} birdCards={birds}
+        update={() => { getBirdInfo() }} />}
       {cardView && <BirdDetail bird={cardsBird} back={() => { cardClicked() }} userID={userID} />}
     </BirdPageDiv>
   );
