@@ -50,8 +50,9 @@ const ImgDiv = styled.div`
 
 const HeaderDiv = styled.div`
 height: auto;
-padding-left: 40px;
+width: 300px;
 line-height: 1em;
+text-align:end;
 `;
 
 const BirdDetailBackground = styled.div`{
@@ -95,7 +96,6 @@ const BirdDetailHeader = styled.div`
 
 const DescriptionDiv = styled.div`
     grid-area: 2 / 2 / 6 / 7;
-    padding: 2rem;
     display: flex;
     justify: content: space-between;
   `;
@@ -104,7 +104,7 @@ const DescriptionDiv = styled.div`
 const BirdSummary = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%
+  width: 40%;
   border-right: 1px groove lightgray;
 `;
 
@@ -116,6 +116,10 @@ const PictureAndNotesDiv = styled.div`
   padding: 15px;
 `;
 
+const TestDiv = styled.div`
+display: flex;
+
+`;
 
 export {
   BirdPageDiv,
@@ -129,5 +133,6 @@ export {
   BirdDetailBackground,
   DescriptionDiv,
   BirdSummary,
-  PictureAndNotesDiv
+  PictureAndNotesDiv,
+  TestDiv
 }

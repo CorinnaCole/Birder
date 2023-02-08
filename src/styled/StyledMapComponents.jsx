@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const MapContainer = styled.div`
-  grid-area: 7 / 2 / 10 / 7;
+  grid-area: 6 / 2 / 10 / 7;
 `;
 
 
