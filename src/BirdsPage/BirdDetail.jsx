@@ -8,8 +8,14 @@ import {
   BirdDetailDiv,
   BirdDetailHeader,
   BirdDetailBackground,
-  DescriptionDiv
+  DescriptionDiv,
+  BirdSummary,
+  PictureAndNotesDiv,
+  TopDescriptionDiv
 } from '../styled/StyledBirdComponents.jsx';
+import {
+  MapContainer
+} from '../styled/StyledMapComponents.jsx';
 
 
 
@@ -42,38 +48,35 @@ const BirdDetail = ({ bird, back }) => {
         <BirdDetailHeader>
           {bird.common_name}: {bird.scentific_name}
           <CloseIcon
-            onClick={() => {back()}}
+            onClick={() => { back() }}
             sx={{
               color: "white",
               fontSize: 40,
               cursor: "pointer"
-            }}
-          />
+            }} />
         </BirdDetailHeader>
         <DescriptionDiv>
-          <SectionImage
-            src={birdphotos[bird.bird_id - 1] || bird.bird_photos[0]}
-            alt="header image"
-            height="400"
-            width="384"
-          />
-          <aside>
-
-            <h2>{bird.scentific_name}</h2>
-
-            <div>Times seen: {bird.count}</div>
-            <h3>Decription</h3>
-            <Decription>
-              {bird.summary}
-            </Decription>
-            <h3>Personal Notes</h3>
-            <Decription>{bird.sighting_notes[0]}</Decription>
-          </aside>
-          <aside>
-            <h3 >Sighting Locations</h3>
-            <Map birdArrayLocations={bird.bird_location} />
-          </aside>
+            <BirdSummary>
+              <h3>Description</h3>
+              <Decription>
+                {bird.summary}
+              </Decription>
+            </BirdSummary>
+            <PictureAndNotesDiv>
+              <SectionImage
+                src={birdphotos[bird.bird_id - 1] || bird.bird_photos[0]}
+                alt="header image"
+                height="400"
+                width="384"
+              />
+              <div>Times seen: {bird.count}</div>
+              <h3>Personal Notes</h3>
+              <Decription>{bird.sighting_notes[0]}</Decription>
+            </PictureAndNotesDiv>
         </DescriptionDiv>
+          <MapContainer >
+            <Map birdArrayLocations={bird.bird_location} />
+          </MapContainer>
       </BirdDetailDiv>
     </BirdDetailBackground>
   );

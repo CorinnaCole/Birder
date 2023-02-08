@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { googleMapsApiKey } from '../secrets.js';
+import {
+  MapContainer
+} from './styled/StyledMapComponents.jsx';
 
 
 const Map = ({birdArrayLocations}) => {
@@ -25,7 +28,7 @@ const Map = ({birdArrayLocations}) => {
   }, [])
 
   const mapStyles = {
-    height: "50vh",
+    height: "100%",
     width: "100%"
   };
 
@@ -44,7 +47,6 @@ const Map = ({birdArrayLocations}) => {
         }
       </GoogleMap>
     </LoadScript>
-
   )
 };
 
