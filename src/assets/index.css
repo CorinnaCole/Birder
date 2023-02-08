@@ -8,18 +8,13 @@
   color-scheme: light dark;
   color: black;
   background-color: white;
-
+  box-sizing: border-box;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
-/* html {
-  height: 100%;
-  width: 100%;
-} */
 
 body {
   margin: 0;
