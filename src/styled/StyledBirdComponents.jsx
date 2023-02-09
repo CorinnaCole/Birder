@@ -52,7 +52,6 @@ const HeaderDiv = styled.div`
 height: auto;
 width: 300px;
 line-height: 1em;
-text-align:end;
 `;
 
 const BirdDetailBackground = styled.div`{
@@ -66,8 +65,7 @@ const BirdDetailBackground = styled.div`{
 }`;
 
 const BirdDetailDiv = styled.div`
-  width: 90vw;
-  max-width: 1577px;
+  width: clamp(250px, 95vw, 1000px);
   height: 95vh;
   position: absolute;
   top: 50%;
@@ -105,7 +103,7 @@ const BirdSummary = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
-  border-right: 1px groove lightgray;
+  border-right: 2px solid #E5E6E4;
 `;
 
 const PictureAndNotesDiv = styled.div`
